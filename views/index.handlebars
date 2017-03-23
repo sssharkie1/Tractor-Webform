@@ -1,27 +1,55 @@
-<h1>Stay on the Tractor</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>Stay on the Tractor</title>
 
-<h2>Manage start and end dates with this app</h2>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
-<p>Serch for the Generic Article ID and click on "Update this Article"</p>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://use.fontawesome.com/c606ab7025.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+
+<link href="https://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="jumbotron">
+  <h1 class="display-3">Stay on the Tractor</h1>
+    <p class="lead">Manage start and end dates for web products with this application.</p>
+  <hr class="my-4">
+    <p>Search for the Generic Article ID and click on "Update this Article"</p>
+
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+</div>
 
 <div>
- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+  <p id = "generic">Generic Article ID</p>
+  <p id = "site">Site Code</p>
+  <p id = "start">Start Date</p>
+  <p id = 'end'>End Date</p>
+  <!-- Pass in data from server.js -->
+  <ul id = "myList">
+    {{#each webform}}
+    	<li>
+    		<p id= 'pgeneric'><span class="label" id = "Generic_Article_Id listname"></span> {{this.Generic_Article_Id}}</p>
+        <p id = 'psite'><span class="label" id = "Site_Code listname"></span>{{this.Site_Code}}</p>
+        <p id = 'pstart'><span class="label" id = 'Start_Date listname'></span> {{this.Start_Date}}</p>
+              <p id = 'pend'><span class="label" id = "End_Date listname"></span> {{this.End_Date}}</p>
+
+        <a href="/{{this.id}}">Update this Article</a>
+    	</li>
+    {{/each}}
+  </ul> 
 </div>
-<!-- Pass in data from server.js -->
-<ul id = "myList">
-  {{#each webform}}
-  	<li>
-  		<p><span class="label" id = "Generic_Article_Id listname">Generic Article ID:</span> {{this.Generic_Article_Id}}</p>
-      <p><span class="label" id = "Site_Code listname">Site Code:</span> {{this.Site_Code}}</p>
-      <p><span class="label" id = 'Start_Date listname'>Start Date:</span> {{this.Start_Date}}</p>
-            <p><span class="label" id = "End_Date listname">End Date:</span> {{this.End_Date}}</p>
-
-      <a href="/{{this.id}}">Update this Article</a>
-  	</li>
-  {{/each}}
-</ul> 
-
-
 
 <script>
 
@@ -45,19 +73,5 @@ function myFunction() {
     }
 }
 </script>
-<!--<h1>Update the article ID {{this.Generic_Article_Id}}</h1>
 
-<form class="create-update-form" action="/{{this.id}}?_method=PUT" method="POST">
 
-  <div class="form-group">
-    <label for="auth">Start Date:</label>
-    <input type="Date" id="Start_Date" name="Start_Date" value="{{this.Start-Date}}">
-  </div>
-
-  <div class="form-group">
-    <label for="quo">End Date:</label>
-    <input type="Date" id="End_Date" name="End_Date" value="{{this.End-Date}}">
-  </div>
-
-  <button type="submit">Update Dates</button>
-</form>
