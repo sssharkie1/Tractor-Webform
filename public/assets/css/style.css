@@ -1,7 +1,7 @@
-li {
+p {
   background: #FAEBD7;
   margin: 5px;
-  padding: 5px;
+  display: inline-block;
 }
 
 .label {
@@ -16,4 +16,17 @@ li {
 
 .form-group {
   margin-bottom: 5px;
+}
+
+#Site_Code {
+	width:50%;
+
+}
+
+#Start_Date {
+	width:50%;
+}
+
+#End_Date {
+	width:50%;
 }

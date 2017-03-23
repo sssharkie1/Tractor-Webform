@@ -1,15 +1,20 @@
 <h1>Stay on the Tractor</h1>
 
-<p>Manage start and end dates with this app</p>
+<h2>Manage start and end dates with this app</h2>
 
+<p>Serch for the Generic Article ID and click on "Update this Article"</p>
+
+<div>
+ <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+</div>
 <!-- Pass in data from server.js -->
-<ul>
+<ul id = "myList">
   {{#each webform}}
   	<li>
-  		<p><span class="label">Generic Article ID:</span> {{this.Generic_Article_Id}}</p>
-      <p><span class="label">Site Code:</span> {{this.Site_Code}}</p>
-      <p><span class="label">Start Date:</span> {{this.Start_Date}}</p>
-            <p><span class="label">End Date:</span> {{this.End_Date}}</p>
+  		<p><span class="label" id = "Generic_Article_Id listname">Generic Article ID:</span> {{this.Generic_Article_Id}}</p>
+      <p><span class="label" id = "Site_Code listname">Site Code:</span> {{this.Site_Code}}</p>
+      <p><span class="label" id = 'Start_Date listname'>Start Date:</span> {{this.Start_Date}}</p>
+            <p><span class="label" id = "End_Date listname">End Date:</span> {{this.End_Date}}</p>
 
       <a href="/{{this.id}}">Update this Article</a>
   	</li>
@@ -17,6 +22,29 @@
 </ul> 
 
 
+
+<script>
+
+console.log("working?");
+function myFunction() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myList");
+    li = ul.getElementsByTagName('li');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("p")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
 <!--<h1>Update the article ID {{this.Generic_Article_Id}}</h1>
 
 <form class="create-update-form" action="/{{this.id}}?_method=PUT" method="POST">
